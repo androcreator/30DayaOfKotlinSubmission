@@ -40,4 +40,9 @@ rootProject.ext{
     rxAndroidVersion = '2.0.2'
     retrofitVersion = '2.5.0'
     okhttp = '3.12.0'
+
+    roomVersion = '2.2.1'
+    archLifecycleVersion = '2.2.0'
+    coreTestingVersion = '2.1.0'
+    materialVersion = '1.0.0'
 }
