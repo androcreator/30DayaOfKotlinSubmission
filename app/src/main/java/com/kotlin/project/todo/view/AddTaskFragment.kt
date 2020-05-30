@@ -59,7 +59,6 @@ class AddTaskFragment : Fragment() {
             }
         }
         view.deleteBT.setOnClickListener {
-            // Usage of Higher Order function.
             showDeleteAlert()
         }
     }
@@ -158,6 +157,7 @@ class AddTaskFragment : Fragment() {
             "Yes",
             DialogInterface.OnClickListener {
                     dialog, id -> dialog.cancel()
+                // Usage of Higher Order function.
                 taskViewModel.delete(::getSelectedItemId)
                 findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
             })
