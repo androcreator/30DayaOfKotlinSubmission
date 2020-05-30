@@ -89,7 +89,7 @@ class AddTaskFragment : Fragment() {
             }
             "Update" -> {
                 getSelectedDateTime()
-                val task = ToDoItems(getSelectedItemId(), taskName, tag, description, remainder, dateTime, setStatus())
+                val task = ToDoItems(id = getSelectedItemId(), taskName = taskName, tag = tag, desc = description, isRemainder = remainder, dateTime = dateTime, status = setStatus())
                 taskViewModel.update(task)
                 createNotification(requireContext())
             }
