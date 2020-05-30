@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">30DaysofKotlin</string>
+    <string name="app_name">ToDo</string>
     <string name="welcome">Welcome to ToDo list application.\n Click + button to add your daily task</string>
     <string name="title_activity_main2">Main2Activity</string>
     <!-- Strings used for fragments for navigation -->
@@ -7,7 +7,10 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="save">Save</string>
+    <string name="delete">Delete</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

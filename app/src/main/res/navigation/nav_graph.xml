@@ -7,19 +7,25 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.kotlin.project.todo.view.FirstFragment"
+        android:name="com.kotlin.project.todo.view.TaskListFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/addTaskFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.kotlin.project.todo.view.SecondFragment"
+        android:id="@+id/addTaskFragment"
+        android:name="com.kotlin.project.todo.view.AddTaskFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_add_task">
+
+        <argument
+            android:name="editTaskArguments"
+            app:argType="com.kotlin.project.todo.data.database.entity.ToDoItems"
+            android:defaultValue="@null"
+            app:nullable="true" />
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

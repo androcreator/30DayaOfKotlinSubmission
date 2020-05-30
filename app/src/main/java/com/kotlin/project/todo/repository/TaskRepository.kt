@@ -14,7 +14,23 @@ class TaskRepository:KoinComponent {
         toDoDao.inserTodo(toDoItems)
     }
 
-    fun getTaskList(): LiveData<List<ToDoItems>>? {
+    fun getTaskList(): LiveData<List<ToDoItems>> {
         return toDoDao.getTodoList()
+    }
+
+    fun deleteTask(id:Int){
+        return toDoDao.deleteTodo(id)
+    }
+
+    fun updateTask(toDoItems:ToDoItems) {
+        return toDoDao.updateTask(
+                toDoItems.id,
+                toDoItems.taskName,
+                toDoItems.tag,
+                toDoItems.desc,
+                toDoItems.isRemainder,
+                toDoItems.dateTime,
+                toDoItems.status
+        )
     }
 }

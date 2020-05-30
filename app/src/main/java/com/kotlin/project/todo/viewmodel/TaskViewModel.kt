@@ -12,6 +12,8 @@ import org.koin.core.inject
 class TaskViewModel : BaseViewModel(), KoinComponent {
     private val taskRepository: TaskRepository by inject()
 
+    fun getTaskList() = taskRepository.getTaskList()
+
     fun addTask(toDoItems: ToDoItems) {
         viewModelScope.launch {
             createTask(toDoItems)
@@ -24,8 +26,32 @@ class TaskViewModel : BaseViewModel(), KoinComponent {
         }
     }
 
-    fun getTaskList() = taskRepository.getTaskList()
+
+    fun update(toDoItems: ToDoItems) {
+        viewModelScope.launch {
+            updateTask(toDoItems)
+        }
+    }
 
 
-    data class Task(var taskName:String, var date:Long, var tag:String, var desc:String, var isRemainder:Boolean)
+    private suspend fun updateTask(toDoItems: ToDoItems) {
+        withContext(Dispatchers.IO) {
+            taskRepository.updateTask(toDoItems)
+        }
+    }
+
+
+    fun delete(id: () -> Int) {
+        viewModelScope.launch {
+            deleteTask(id.invoke())
+        }
+    }
+
+
+    private suspend fun deleteTask(id: Int) {
+        withContext(Dispatchers.IO) {
+            taskRepository.deleteTask(id)
+        }
+    }
+
 }

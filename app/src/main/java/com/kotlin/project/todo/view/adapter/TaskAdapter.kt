@@ -1,17 +1,21 @@
 package com.kotlin.project.todo.view.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kotlin.project.R
+import com.kotlin.project.todo.data.database.STATUS
 import com.kotlin.project.todo.data.database.entity.ToDoItems
 import com.kotlin.project.todo.extension.getDateTimeFromTimeStamp
+import com.kotlin.project.todo.interfaces.ITaskItemClickCallback
 
 
 class TaskAdapter(
-    private val listOfTask:List<ToDoItems>
+    private val listOfTask:List<ToDoItems>,
+    var iTaskItemClickCallback: ITaskItemClickCallback
 ): RecyclerView.Adapter<TaskAdapter.TaskItemHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskItemHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -25,9 +29,25 @@ class TaskAdapter(
 
     override fun onBindViewHolder(holder: TaskItemHolder, position: Int) {
         holder.header.text = listOfTask.get(position).taskName
-        holder.footer.text = "Status :"+listOfTask.get(position).status.toString()
+
+        when(listOfTask.get(position).status){
+            STATUS.TODAY ->{
+                holder.footer.setTextColor(Color.parseColor("#008000"))
+            }
+            STATUS.ELAPSED ->{
+                holder.footer.setTextColor(Color.parseColor("#800000"))
+            }
+            STATUS.UPCOMING ->{
+                holder.footer.setTextColor(Color.parseColor("#FFA500"))
+            }
+        }
+        holder.footer.text = listOfTask.get(position).status.toString()
         holder.date.text = "Date:\n"+listOfTask.get(position).dateTime.getDateTimeFromTimeStamp()
         holder.descTV.text = "Description :\n"+listOfTask.get(position).desc
+
+        holder.itemView.setOnClickListener {
+            iTaskItemClickCallback.onTaskItemClick(listOfTask.get(position))
+        }
 
     }
 
